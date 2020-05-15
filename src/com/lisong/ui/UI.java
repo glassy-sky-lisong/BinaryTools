@@ -20,7 +20,7 @@ public class UI {
         frame.setTitle("hello,world");
         frame.setSize(600,400);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+        frame.setLocation(400,100);
         frame.setVisible(true);
         JMenuBar jMenuBar = new JMenuBar();
 
