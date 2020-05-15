@@ -9,7 +9,7 @@ import java.util.*;
  * @Description
  */
 public class TenToBinaryParser {
-    private Integer ScanContent;
+    private int ScanContent;
     private String result;
     private int[] lists;
 
@@ -19,24 +19,28 @@ public class TenToBinaryParser {
 
     public TenToBinaryParser(String content) {
         this.ScanContent = Integer.parseInt(content);
-        if (ScanContent == null) new NullPointerException();
         int d = ScanContent;
-        int m = d >> 1;
         int i = 0;
-        while ((d >> 1) != 1) {
-            d = d >> 1;
-            i++;
+        if (d != 0) {
+            while (d != 0) {
+                d = d >> 1;
+                i++;
+            }
+            lists = new int[i];
+        }else {
+            lists = new int[1];
         }
-        lists = new int[i+2];
     }
 
     private void parse() {
-        for (int i=0;i<lists.length;i++) {
-            int tmp = ScanContent%2;
+        int tmp;
+        int length = lists.length;
+        for (int i=0;i<length;i++) {
+            tmp = ScanContent%2;
              if (tmp == 1) {
-                 lists[i] = 1;
+                 lists[length-1-i] = 1;
              }else if (tmp == 0) {
-                 lists[i] = 0;
+                 lists[length-1-i] = 0;
              }
              ScanContent /= 2;
         }
@@ -52,17 +56,24 @@ public class TenToBinaryParser {
         return result;
     }
 
-    public static String toString(int[] a){
+    public static String toString(int[] datas){
         StringBuffer buffer = new StringBuffer("");
-        for (int s: a) {
-            buffer.append(s);
+        for (int s=0;s<datas.length;s++){
+            if (s == 0 && datas[s] == 0) {
+                if (datas[s+1] == 0){
+                    s = s+2;
+                }
+            }else {
+                buffer.append(datas[s]);
+            }
         }
         return buffer.toString();
     }
 
     public static void main(String[] args) {
-        TenToBinaryParser tbp = new TenToBinaryParser("15");
-        String finalData = tbp.getFinalData();
-        System.out.println(finalData);
+        TenToBinaryParser tbp = new TenToBinaryParser("7");
+        String data = tbp.getFinalData();
+        System.out.println(data);
+
     }
 }
