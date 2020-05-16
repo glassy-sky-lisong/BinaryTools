@@ -58,14 +58,18 @@ public class BinaryToTenParser {
         result += ints[ints.length-1];
     }
 
-    public int getFinalData() {
+    public String getFinalData() {
         resoleResult();
-        return result;
+        return resultToString(result);
+    }
+
+    private String resultToString(int f) {
+        return String.valueOf(f);
     }
 
     public static void main(String[] args) {
         BinaryToTenParser btp = new BinaryToTenParser("1111");
-        int result = btp.getFinalData();
+        String result = btp.getFinalData();
         System.out.println("result = "+ result);
     }
 }
